@@ -7,6 +7,7 @@
 ## 使用技巧
 
 ### 一键换源
+
 系统源
 ```sh
 bash <(curl -sSL https://gitee.com/SuperManito/LinuxMirrors/raw/main/ChangeMirrors.sh)
@@ -32,7 +33,6 @@ bash <(curl -sSL https://gitee.com/SuperManito/LinuxMirrors/raw/main/DockerInsta
 ### SD卡自动挂载卸载
 
 新建 `/etc/udev/rules.d/11-auto-mount.rules` 内容如下
-
 ```
 KERNEL!="mmcblk0*", GOTO="media_by_label_auto_mount_end"
 ENV{mount_path}="/media"
@@ -47,15 +47,44 @@ ACTION=="remove", ENV{dir_name}!="", RUN+="/usr/bin/systemd-mount --umount %E{mo
 LABEL="media_by_label_auto_mount_end"
 ```
 
-> 第二行`ENV{mount_path}="/media"`可自定义挂载的目录
+> 第二行`ENV{mount_path}="/media"`可自定义挂载的目录。  
 > CasaOS已提供自动挂载USB磁盘选项，以服务方式监听更佳，这里不做重复设置；否则还可以修改第一句此处`KERNEL!="sd*|mmcblk0*"`，原理是正则匹配设备名，不符合则跳过挂载。
 
 ### 系统启动后蓝灯
 
-写入 `/etc/rc.local`，稍加修改可自定义颜色。
+以下写入 `/etc/rc.local`，可修改可自定义颜色。
 ```
 # 系统启动后蓝灯
 echo 1 > /sys/class/leds/onecloud:blue:alive/brightness
 echo 0 > /sys/class/leds/onecloud:green:alive/brightness
 echo 0 > /sys/class/leds/onecloud:red:alive/brightness
+```
+
+### 配置网页终端服务
+
+1. [下载 ttyd](https://github.com/tsl0922/ttyd/releases) 相应架构版本，玩客云可用为`ttyd.armhf`，改名`ttyd`，放到`/opt/ttyd`。
+
+2. 新建 `/etc/systemd/system/ttyd.service` 内容如下
+```
+[Unit]
+Description=TTYD
+After=syslog.target
+After=network.target
+
+[Service]
+ExecStart=/opt/ttyd -p 4200 login
+Type=simple
+Restart=always
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
+```
+
+其中4200为端口号，login为网页标题，可自定义。
+
+3. 执行
+```
+sudo systemctl start ttyd && sudo systemctl enable ttyd
 ```
