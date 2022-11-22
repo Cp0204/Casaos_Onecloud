@@ -9,7 +9,7 @@ CasaOS_玩客云搞基计划。
 
 ### 第三方应用
 
-[AppFile](/AppFile) 文件夹收集一些好用的镜像 JSON 文件，尽可能方便地扩展CasaOS的功能。
+[AppFile](/AppFile) 文件夹收集一些好用的镜像 JSON 文件，尽可能方便地扩展 CasaOS 的功能。
 
 使用方法：应用中心-自定义安装-右上角导入-AppFile
 
@@ -27,7 +27,8 @@ CasaOS_玩客云搞基计划。
 
 CasaOS项目官方 https://github.com/IceWhaleTech/CasaOS
 
-《CasaOS—— 一个简单，易于使用，优雅的开源家庭云系统》
+《CasaOS —— 一个简单，易于使用，优雅的开源家庭云系统》
+
 https://mp.weixin.qq.com/s/1oMywRTbmUADLOlSefvd9A
 
 https://www.bilibili.com/video/BV1X94y1Z7sA
@@ -58,15 +59,15 @@ casaos-uninstall
 
 Docker 是一个开源的应用容器引擎，可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。
 
-容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。
+容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app），更重要的是容器性能开销极低。
 
-如果你希望了解Docker，请点击这里  
+如果你希望了解 Docker ，请点击这里
 
 https://www.runoob.com/docker/docker-tutorial.html
 
 ### SMB共享
 
-CasaOS 目前暂不支持 samba 共享的权限控制，如果需要权限控制，需关闭CasaOS内置共享，并用第三方镜像：
+CasaOS 目前暂不支持 samba 共享的权限控制，如果需要权限控制，需关闭 CasaOS 内置共享，并用第三方镜像：
 
 https://github.com/dperson/samba
 
