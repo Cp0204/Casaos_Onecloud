@@ -1,0 +1,53 @@
+{
+    "host": "",
+    "protocol": "http",
+    "port_map": "2017",
+    "cpu_shares": 10,
+    "restart": "unless-stopped",
+    "label": "v2raya",
+    "position": false,
+    "index": "",
+    "icon": "https://cdn.jsdelivr.net/gh/Cp0204/AppIcon@main/all/v2raya.png",
+    "network_model": "host",
+    "image": "mzz2017/v2raya:latest",
+    "description": "",
+    "origin": "custom",
+    "ports": [],
+    "volumes": [
+        {
+            "container": "/lib/modules",
+            "host": "/lib/modules",
+            "type": 0,
+            "desc": ""
+        },
+        {
+            "container": "/etc/resolv.conf",
+            "host": "/etc/resolv.conf",
+            "type": 0,
+            "desc": ""
+        },
+        {
+            "container": "/etc/v2raya",
+            "host": "/DATA/AppData/v2raya",
+            "type": 0,
+            "desc": ""
+        }
+    ],
+    "envs": [
+        {
+            "container": "V2RAYA_ADDRESS",
+            "host": "0.0.0.0:2017",
+            "desc": "",
+            "type": 0
+        }
+    ],
+    "devices": [],
+    "cap_add": [],
+    "cmd": [],
+    "privileged": true,
+    "host_name": "v2raya",
+    "container_name": "v2raya",
+    "custom_id": "76839527-1dba-4075-a54b-4311cf84f0da",
+    "enable_upnp": false,
+    "version": "1.0"
+}
