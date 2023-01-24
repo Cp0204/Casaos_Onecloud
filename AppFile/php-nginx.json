@@ -2,19 +2,19 @@
     "host": "",
     "protocol": "http",
     "port_map": "8080",
-    "cpu_shares": 10,
+    "cpu_shares": 90,
     "restart": "unless-stopped",
     "label": "php-nginx",
     "position": false,
     "index": "",
-    "icon": "https://cdn.jsdelivr.net/gh/Cp0204/AppIcon@main/all/nginx.png",
+    "icon": "https://icon.casaos.io/main/all/nginx.png",
     "network_model": "bridge",
-    "image": "trafex/php-nginx:latest",
+    "image": "shinsenter/phpfpm-nginx:latest",
     "description": "",
-    "origin": "custom",
+    "origin": "local",
     "ports": [
         {
-            "container": "8080",
+            "container": "80",
             "host": "8080",
             "protocol": "tcp",
             "desc": "",
@@ -24,23 +24,384 @@
     "volumes": [
         {
             "container": "/var/www/html",
-            "host": "/DATA/AppData/php-nginx",
+            "host": "/DATA/AppData/wwwroot",
             "type": 0,
             "desc": ""
         }
     ],
-    "envs": [],
-    "devices": [],
-    "cap_add": [],
-    "cmd": [
-        "/usr/bin/supervisord",
-        "-c",
-        "/etc/supervisor/conf.d/supervisord.conf"
+    "envs": [
+        {
+            "container": "WEBHOME",
+            "host": "/var/www/html",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PUID",
+            "host": "1000",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PGID",
+            "host": "1000",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PATH",
+            "host": "/composer/vendor/bin:/command:/bin:/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "S6_BEHAVIOUR_IF_STAGE2_FAILS",
+            "host": "2",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "S6_CMD_WAIT_FOR_SERVICES_MAXTIME",
+            "host": "600000",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "S6_KEEP_ENV",
+            "host": "1",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "S6_KILL_FINISH_MAXTIME",
+            "host": "3000",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "S6_KILL_GRACETIME",
+            "host": "3000",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "S6_LOGGING",
+            "host": "1",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "S6_SERVICES_GRACETIME",
+            "host": "3000",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "S6_VERSION",
+            "host": "v3.1.2.1",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "DEBUG_MODE",
+            "host": "false",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "ENABLE_CRONTAB",
+            "host": "false",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "HOME",
+            "host": "/root",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "LANG",
+            "host": "C.UTF-8",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "LANGUAGE",
+            "host": "C.UTF-8",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "LC_ALL",
+            "host": "C",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "SHELL",
+            "host": "/bin/bash",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "TERM",
+            "host": "xterm",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "IMAGE_NAME",
+            "host": "shinsenter/phpfpm-nginx",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_VERSION",
+            "host": "8.2",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "COMPOSER_ALLOW_SUPERUSER",
+            "host": "1",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "COMPOSER_HOME",
+            "host": "/composer",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "COMPOSER_HTACCESS_PROTECT",
+            "host": "1",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "COMPOSER_MAX_PARALLEL_HTTP",
+            "host": "32",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_CONF_DIR",
+            "host": "/etc/php/cli/conf.d",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_INI_DIR",
+            "host": "/etc/php/cli",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "MSMTP_RELAY_SERVER_HOSTNAME",
+            "host": "mailhog",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "MSMTP_RELAY_SERVER_PORT",
+            "host": "1025",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_DEFAULT_CHARSET",
+            "host": "UTF-8",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_DISPLAY_ERRORS",
+            "host": "On",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_ERROR_REPORTING",
+            "host": "E_ALL & ~E_DEPRECATED & ~E_STRICT",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_MAX_EXECUTION_TIME",
+            "host": "99",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_MEMORY_LIMIT",
+            "host": "256M",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_POST_MAX_SIZE",
+            "host": "100M",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_UPLOAD_MAX_FILE_SIZE",
+            "host": "10M",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_POOL_NAME",
+            "host": "www",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHPFPM_CONF_DIR",
+            "host": "/etc/php/fpm/conf.d",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHPFPM_SOCK_PATH",
+            "host": "/var/run/php/php-fpm.sock",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_PM_CONTROL",
+            "host": "ondemand",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_PM_MAX_CHILDREN",
+            "host": "28",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_PM_MAX_SPARE_SERVERS",
+            "host": "21",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_PM_MIN_SPARE_SERVERS",
+            "host": "7",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_PM_START_SERVERS",
+            "host": "7",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_OPCACHE_INTERNED_STRINGS_BUFFER",
+            "host": "64",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_OPCACHE_MAX_ACCELERATED_FILES",
+            "host": "130987",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_OPCACHE_MAX_WASTED_PERCENTAGE",
+            "host": "15",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_OPCACHE_MEMORY_CONSUMPTION",
+            "host": "256",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_OPCACHE_PRELOAD_USER",
+            "host": "webuser",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_OPCACHE_REVALIDATE_FREQ",
+            "host": "5",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_OPCACHE_REVALIDATE_PATH",
+            "host": "0",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_OPCACHE_SAVE_COMMENTS",
+            "host": "1",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_OPCACHE_VALIDATE_TIMESTAMPS",
+            "host": "1",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_OPCACHE_JIT",
+            "host": "tracing",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_OPCACHE_BUFFER_SIZE",
+            "host": "128M",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PHP_OPCACHE_PRELOAD",
+            "host": "",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "NGINX_DOCUMENT_ROOT",
+            "host": "",
+            "desc": "",
+            "type": 0
+        }
     ],
+    "devices": [],
+    "cap_add": [
+        "AUDIT_WRITE",
+        "CHOWN",
+        "DAC_OVERRIDE",
+        "FOWNER",
+        "FSETID",
+        "KILL",
+        "MKNOD",
+        "NET_BIND_SERVICE",
+        "NET_RAW",
+        "SETFCAP",
+        "SETGID",
+        "SETPCAP",
+        "SETUID",
+        "SYS_CHROOT"
+    ],
+    "cmd": [],
     "privileged": false,
     "host_name": "php-nginx",
     "container_name": "php-nginx",
-    "custom_id": "f2ab7b3b-e6af-40a0-ad1d-5769a2bf13f6",
+    "appstore_id": 0,
+    "custom_id": "afceb11c-9c56-4a71-ba17-ec3cdf309a7b",
     "enable_upnp": false,
     "version": "1.0"
 }
