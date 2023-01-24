@@ -1,0 +1,50 @@
+{
+    "host": "",
+    "protocol": "http",
+    "port_map": "86",
+    "cpu_shares": "50",
+    "restart": "unless-stopped",
+    "label": "gotify",
+    "position": false,
+    "index": "",
+    "icon": "https://raw.githubusercontent.com/gotify/logo/master/gotify-logo.png",
+    "network_model": "bridge",
+    "image": "gotify/server-arm7:latest",
+    "description": "",
+    "origin": "local",
+    "ports": [
+        {
+            "container": "80",
+            "host": "86",
+            "protocol": "tcp",
+            "desc": "",
+            "type": 0
+        }
+    ],
+    "volumes": [
+        {
+            "container": "/app/data",
+            "host": "/DATA/AppData/gotify",
+            "type": 0,
+            "desc": ""
+        }
+    ],
+    "envs": [
+        {
+            "container": "PATH",
+            "host": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "desc": "",
+            "type": 0
+        }
+    ],
+    "devices": [],
+    "cap_add": [],
+    "cmd": [],
+    "privileged": false,
+    "host_name": "",
+    "container_name": "gotify",
+    "appstore_id": 0,
+    "custom_id": "3bbd4e21-ef51-4a21-a783-5d9eaaf6d658",
+    "enable_upnp": false,
+    "version": "1.0"
+}
