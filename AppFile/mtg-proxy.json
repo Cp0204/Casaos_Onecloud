@@ -1,0 +1,38 @@
+{
+    "host": "",
+    "protocol": "http",
+    "port_map": null,
+    "cpu_shares": 10,
+    "restart": "unless-stopped",
+    "label": "mtg-proxy",
+    "position": false,
+    "index": "",
+    "icon": "https://is3-ssl.mzstatic.com/image/thumb/Purple113/v4/55/39/b7/5539b7ab-867b-0341-a8d3-288c5d8d3bdb/AppIcon-0-0-85-220-0-0-0-0-4-0-0-0-2x-sRGB-0-0-0-0-0.png/1200x630bb.png",
+    "network_model": "host",
+    "image": "nineseconds/mtg:2",
+    "description": "",
+    "origin": "custom",
+    "ports": [],
+    "volumes": [
+        {
+            "container": "/config.toml",
+            "host": "/DATA/AppData/mtg/config.toml",
+            "type": 0,
+            "desc": ""
+        }
+    ],
+    "envs": [],
+    "devices": [],
+    "cap_add": [],
+    "cmd": [
+        "run",
+        "/config.toml"
+    ],
+    "privileged": false,
+    "host_name": "mtg-proxy",
+    "container_name": "mtg-proxy",
+    "appstore_id": 0,
+    "custom_id": "46cc0c3a-75cd-4af1-ae2d-599455cff235",
+    "enable_upnp": false,
+    "version": "1.0"
+}
