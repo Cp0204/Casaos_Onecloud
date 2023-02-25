@@ -1,0 +1,59 @@
+{
+    "host": "",
+    "protocol": "http",
+    "port_map": null,
+    "cpu_shares": 10,
+    "restart": "unless-stopped",
+    "label": "tailscaled",
+    "position": false,
+    "index": "",
+    "icon": "https://tailscale.com/files/apple-touch-icon.png",
+    "network_model": "host",
+    "image": "tailscale/tailscale:latest",
+    "description": "",
+    "origin": "custom",
+    "ports": [],
+    "volumes": [
+        {
+            "container": "/config",
+            "host": "/DATA/AppData/tailscaled",
+            "type": 0,
+            "desc": ""
+        },
+        {
+            "container": "/dev/net/tun",
+            "host": "/dev/net/tun",
+            "type": 0,
+            "desc": ""
+        },
+        {
+            "container": "/var/lib",
+            "host": "/var/lib",
+            "type": 0,
+            "desc": ""
+        }
+    ],
+    "envs": [
+        {
+            "container": "TS_STATE_DIR",
+            "host": "/config",
+            "desc": "",
+            "type": 0
+        }
+    ],
+    "devices": [],
+    "cap_add": [
+        "NET_ADMIN",
+        "NET_RAW"
+    ],
+    "cmd": [
+        "/usr/local/bin/containerboot"
+    ],
+    "privileged": false,
+    "host_name": "CasaOS",
+    "container_name": "tailscaled",
+    "appstore_id": 0,
+    "custom_id": "d91292d9-598a-4904-89e4-bb1ab2b86cb5",
+    "enable_upnp": false,
+    "version": "1.0"
+}
