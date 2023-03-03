@@ -39,6 +39,18 @@
             "host": "/config",
             "desc": "",
             "type": 0
+        },
+        {
+            "container": "TS_EXTRA_ARGS",
+            "host": "--advertise-exit-node",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "TS_ROUTES",
+            "host": "192.168.2.0/24,192.168.1.0/24",
+            "desc": "",
+            "type": 0
         }
     ],
     "devices": [],
