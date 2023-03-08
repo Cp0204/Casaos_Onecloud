@@ -62,6 +62,8 @@ echo 0 > /sys/class/leds/onecloud:red:alive/brightness
 
 ### 配置网页终端服务
 
+#### 手动安装
+
 1. [下载 ttyd](https://github.com/tsl0922/ttyd/releases) 相应架构版本，玩客云可用为`ttyd.armhf`，改名`ttyd`，放到`/opt/ttyd`，设置权限777。
 
 2. 新建 `/etc/systemd/system/ttyd.service` 内容如下
@@ -87,4 +89,9 @@ WantedBy=multi-user.target
 3. 执行
 ```
 sudo systemctl start ttyd && sudo systemctl enable ttyd
+```
+
+#### 一键安装
+```bash
+wget -qO- https://github.com/Cp0204/Casaos_Onecloud/raw/main/shell/install_ttyd.sh | bash
 ```
