@@ -93,5 +93,5 @@ sudo systemctl start ttyd && sudo systemctl enable ttyd
 
 #### 一键安装
 ```bash
-wget -qO- https://github.com/Cp0204/Casaos_Onecloud/raw/main/shell/install_ttyd.sh | bash
+bash <(curl -Ls https://github.com/Cp0204/Casaos_Onecloud/raw/main/shell/install_ttyd.sh)
 ```
