@@ -84,7 +84,7 @@ Group=root
 WantedBy=multi-user.target
 ```
 
-其中4200为端口号，login为网页标题，可自定义。
+其中4200为端口号，可自定义。
 
 3. 执行
 ```
