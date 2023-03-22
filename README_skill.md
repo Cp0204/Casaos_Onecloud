@@ -62,6 +62,8 @@ echo 0 > /sys/class/leds/onecloud:red:alive/brightness
 
 ### 配置网页终端服务
 
+#### 手动安装
+
 1. [下载 ttyd](https://github.com/tsl0922/ttyd/releases) 相应架构版本，玩客云可用为`ttyd.armhf`，改名`ttyd`，放到`/opt/ttyd`，设置权限777。
 
 2. 新建 `/etc/systemd/system/ttyd.service` 内容如下
@@ -82,9 +84,52 @@ Group=root
 WantedBy=multi-user.target
 ```
 
-其中4200为端口号，login为网页标题，可自定义。
+其中4200为端口号，可自定义。
 
 3. 执行
 ```
 sudo systemctl start ttyd && sudo systemctl enable ttyd
+```
+
+#### 一键安装
+```bash
+bash <(curl -Ls https://github.com/Cp0204/Casaos_Onecloud/raw/main/shell/install_ttyd.sh)
+```
+
+### 反向代理 CasaOS
+
+本方案使用 `nginx:mainline-alpine-slim` 镜像做反向代理，相比于 Nginx Proxy Manager 更轻量（12M vs 300M）。
+
+1. 证书放到 `/DATA/AppData/nginx/cert` 目录。
+
+2. 以下内容保存为 `/DATA/AppData/nginx/conf.d/casaos.conf` ，修改你的端口和证书路径等参数。
+
+```conf
+server {
+    listen 443 ssl;
+    server_name yourcasaos.com;
+    
+    error_page 497 https://$host:$server_port$request_uri;
+
+    ssl_certificate     /cert/yourcasaos.com/yourcasaos.com.crt;
+    ssl_certificate_key /cert/yourcasaos.com/yourcasaos.com.key;
+
+    location / {
+        proxy_pass http://127.0.0.1:80;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+        
+        # WebSocket proxy
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
+```
+
+3. 安装自定义应用-导入-DockerCLI
+```bash
+docker run -d--name nginxProxy --network host -v /DATA/AppData/nginx/conf.d:/etc/nginx/conf.d -v /DATA/AppData/nginx/cert:/cert nginx:mainline-alpine-slim
 ```
