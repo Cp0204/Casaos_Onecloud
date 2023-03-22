@@ -1,0 +1,73 @@
+{
+    "host": "",
+    "protocol": "http",
+    "port_map": "3443",
+    "cpu_shares": 10,
+    "restart": "unless-stopped",
+    "label": "tailscale-derper",
+    "position": false,
+    "index": "",
+    "icon": "https://tailscale.com/files/apple-touch-icon.png",
+    "network_model": "bridge",
+    "image": "fredliang/derper:latest",
+    "description": "",
+    "origin": "custom",
+    "ports": [
+        {
+            "container": "3443",
+            "host": "3443",
+            "protocol": "tcp",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "3478",
+            "host": "3478",
+            "protocol": "udp",
+            "desc": "",
+            "type": 0
+        }
+    ],
+    "volumes": [
+        {
+            "container": "/app/certs",
+            "host": "/DATA/AppData/derper/certs",
+            "type": 0,
+            "desc": ""
+        }
+    ],
+    "envs": [
+        {
+            "container": "DERP_DOMAIN",
+            "host": "xxxxx",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "DERP_ADDR",
+            "host": ":3443",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "DERP_CERT_MODE",
+            "host": "manual",
+            "desc": "",
+            "type": 0
+        }
+    ],
+    "devices": [],
+    "cap_add": [],
+    "cmd": [
+        "/bin/sh",
+        "-c",
+        "/app/derper --hostname=$DERP_DOMAIN     --certmode=$DERP_CERT_MODE     --certdir=$DERP_CERT_DIR     --a=$DERP_ADDR     --stun=$DERP_STUN      --http-port=$DERP_HTTP_PORT     --verify-clients=$DERP_VERIFY_CLIENTS"
+    ],
+    "privileged": false,
+    "host_name": "derper",
+    "container_name": "derper",
+    "appstore_id": 0,
+    "custom_id": "f076d1a1-817c-4310-8890-6024662779f2",
+    "enable_upnp": false,
+    "version": "1.0"
+}
