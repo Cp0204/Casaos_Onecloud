@@ -125,6 +125,9 @@ server {
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
+        
+        # 最大文件上传
+        client_max_body_size 100M;
     }
 }
 ```
