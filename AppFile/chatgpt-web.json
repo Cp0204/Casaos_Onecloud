@@ -1,0 +1,65 @@
+{
+    "host": "",
+    "protocol": "http",
+    "port_map": "3002",
+    "cpu_shares": 10,
+    "restart": "unless-stopped",
+    "label": "chatgpt-web",
+    "position": false,
+    "index": "",
+    "icon": "https://github.com/Chanzhaoyu/chatgpt-web/raw/main/public/pwa-192x192.png",
+    "network_model": "bridge",
+    "image": "chenzhaoyu94/chatgpt-web:latest",
+    "description": "",
+    "origin": "custom",
+    "ports": [
+        {
+            "container": "3002",
+            "host": "3002",
+            "protocol": "tcp",
+            "desc": "",
+            "type": 0
+        }
+    ],
+    "volumes": [],
+    "envs": [
+        {
+            "container": "OPENAI_API_KEY",
+            "host": "yourkey",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "AUTH_SECRET_KEY",
+            "host": "password",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "OPENAI_API_BASE_URL",
+            "host": "https://yourhost",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "TIMEOUT_MS",
+            "host": "300000",
+            "desc": "",
+            "type": 0
+        }
+    ],
+    "devices": [],
+    "cap_add": [],
+    "cmd": [
+        "pnpm",
+        "run",
+        "prod"
+    ],
+    "privileged": false,
+    "host_name": "chatgpt-web",
+    "container_name": "chatgpt-web",
+    "appstore_id": 0,
+    "custom_id": "01afcbdf-168f-4319-8781-fa1720315746",
+    "enable_upnp": false,
+    "version": "1.0"
+}

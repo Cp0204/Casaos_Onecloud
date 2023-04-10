@@ -1,0 +1,64 @@
+{
+    "host": "",
+    "protocol": "http",
+    "port_map": "3000",
+    "cpu_shares": 10,
+    "restart": "unless-stopped",
+    "label": "ChatGPT-Next-Web",
+    "position": false,
+    "index": "",
+    "icon": "https://raw.githubusercontent.com/Yidadaa/ChatGPT-Next-Web/main/docs/images/icon.svg",
+    "network_model": "bridge",
+    "image": "yidadaa/chatgpt-next-web:latest",
+    "description": "",
+    "origin": "custom",
+    "ports": [
+        {
+            "container": "3000",
+            "host": "3000",
+            "protocol": "tcp",
+            "desc": "",
+            "type": 0
+        }
+    ],
+    "volumes": [],
+    "envs": [
+        {
+            "container": "OPENAI_API_KEY",
+            "host": "yourkey",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "CODE",
+            "host": "password",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "BASE_URL",
+            "host": "yourhost",
+            "desc": "",
+            "type": 0
+        },
+        {
+            "container": "PROTOCOL",
+            "host": "https",
+            "desc": "",
+            "type": 0
+        }
+    ],
+    "devices": [],
+    "cap_add": [],
+    "cmd": [
+        "node",
+        "server.js"
+    ],
+    "privileged": false,
+    "host_name": "ChatGPT-Next-Web",
+    "container_name": "ChatGPT-Next-Web",
+    "appstore_id": 0,
+    "custom_id": "3f60991f-2836-4194-8a9b-7ba1dd1e3675",
+    "enable_upnp": false,
+    "version": "1.0"
+}
